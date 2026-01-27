@@ -1,0 +1,20 @@
+{
+  "name": "tiny-url-tests",
+  "version": "1.0.0",
+  "description": "E2E and API tests for tiny-url",
+  "type": "module",
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "test:api": "playwright test --project=api",
+    "test:chromium": "playwright test --project=chromium",
+    "report": "playwright show-report test-results/html"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.1",
+    "@faker-js/faker": "^9.3.0",
+    "dotenv": "^16.4.7"
+  }
+}

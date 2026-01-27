@@ -1,0 +1,10 @@
+installation:
+  version: 6.0.0-alpha.23
+  installDate: 2026-01-24T03:34:59.350Z
+  lastUpdated: 2026-01-24T03:34:59.350Z
+modules:
+  - core
+  - bmm
+ides:
+  - claude-code
+  - windsurf

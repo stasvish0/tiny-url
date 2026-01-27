@@ -1,0 +1,32 @@
+# Dependencies
+backend/node_modules/
+frontend/node_modules/
+tests/node_modules/
+
+# Build output
+dist/
+
+# AWS SAM
+.aws-sam/
+
+# Test results
+test-results/
+coverage/
+
+# Environment
+.env
+.env.local
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*

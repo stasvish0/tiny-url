@@ -1,0 +1,38 @@
+version = 0.1
+
+[default.build.parameters]
+cached = true
+parallel = true
+
+
+[default.deploy.parameters]
+stack_name = "tiny-url"
+resolve_s3 = true
+s3_prefix = "tiny-url"
+region = "us-east-1"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+disable_rollback = false
+parameter_overrides = "Environment=\"dev\""
+image_repositories = []
+
+[default.global.parameters]
+region = "us-east-1"
+
+[dev.deploy.parameters]
+stack_name = "tiny-url-dev"
+resolve_s3 = true
+s3_prefix = "tiny-url-dev"
+region = "us-east-1"
+confirm_changeset = false
+capabilities = "CAPABILITY_IAM"
+parameter_overrides = "Environment=dev"
+
+[prod.deploy.parameters]
+stack_name = "tiny-url-prod"
+resolve_s3 = true
+s3_prefix = "tiny-url-prod"
+region = "us-east-1"
+confirm_changeset = false
+capabilities = "CAPABILITY_IAM"
+parameter_overrides = "Environment=prod"
