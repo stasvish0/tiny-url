@@ -60,6 +60,7 @@ Resources:
     Properties:
       Handler: health.handler
       CodeUri: .
+      Runtime: nodejs20.x
       Events:
         Health:
           Type: HttpApi
@@ -73,6 +74,11 @@ Resources:
         Minify: true
         Target: es2022
         Sourcemap: true
+        Format: esm
+        OutExtension:
+          - .js=.mjs
+        External:
+          - '@aws-sdk/*'
         EntryPoints:
           - src/handlers/health.ts
 
