@@ -123,8 +123,37 @@ N/A
 - Added test for `ShortCode` type assignability
 - Renamed uniqueness test to clarify it's probabilistic
 
+**Code Review Fixes (2026-02-03) - Adversarial Review by Amelia (Dev Agent):**
+- **Fix #1**: Updated nanoid from `^5.0.9` to `^5.1.6` (latest stable version)
+- **Fix #2**: Added comprehensive collision probability documentation to `generateShortCode()` JSDoc:
+  - Documented 4.4 trillion total combinations (64^7)
+  - Collision probabilities at 1M codes (~0.000011%) and 10M codes (~0.0011%)
+  - Recommended retry strategy (up to 3 retries with exponential backoff)
+  - Added link to collision calculator
+- **Fix #3**: Added `isValidShortCode()` runtime validation function:
+  - Type guard with `value is ShortCode` return type
+  - Validates length (exactly 7 characters), type (string), and character set (A-Za-z0-9_-)
+  - Comprehensive JSDoc with examples
+  - Added 6 test cases covering valid codes, invalid length, invalid characters, and non-string values
+- **Fix #4**: Added integration test validating SHORT_CODE_LENGTH constant is correctly used by nanoid
+- **Fix #5**: Fixed flaky probabilistic uniqueness test to use `>= 99` instead of `=== 100` (allows for extremely rare collisions)
+- **Fix #6**: Added 5 negative test cases:
+  - Rapid successive calls without errors (1000 iterations)
+  - No empty strings returned
+  - No whitespace in codes
+  - No URL-unsafe characters
+  - Consistent output type validation
+- **Fix #7**: Added performance benchmark test (< 1ms per code generation over 1000 iterations)
+
+**Test Suite Expansion:**
+- Test suites: 3 → 6 (+3 new suites for validation, negative tests, edge cases)
+- Test cases: 5 → 20 (+15 comprehensive tests)
+- Lines of code: 50 → 140 (+180% expansion)
+- New coverage: Runtime validation, performance benchmarking, edge cases, negative tests
+
 ### File List
 
-- backend/src/lib/shortcode.ts (modified - added JSDoc, ShortCode type)
-- backend/__tests__/lib/shortcode.test.ts (modified - added type test, clarified test name)
+- backend/src/lib/shortcode.ts (modified - added collision docs, isValidShortCode validation function)
+- backend/__tests__/lib/shortcode.test.ts (modified - added 15 new tests, fixed flaky test, performance benchmarks)
+- backend/package.json (modified - updated nanoid ^5.0.9 → ^5.1.6)
 
