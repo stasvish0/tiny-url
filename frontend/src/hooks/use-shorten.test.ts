@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
 import { useShorten } from './use-shorten';
 import * as api from '@/lib/api';
+import type { ApiResponse, ShortenResponse } from '@/types';
 
 vi.mock('@/lib/api');
 
@@ -36,11 +37,11 @@ describe('useShorten', () => {
 
   describe('successful shorten', () => {
     it('should set isLoading to true while request is in progress', async () => {
-      let resolvePromise: (value: unknown) => void;
-      const pendingPromise = new Promise((resolve) => {
+      let resolvePromise: (value: ApiResponse<ShortenResponse>) => void;
+      const pendingPromise = new Promise<ApiResponse<ShortenResponse>>((resolve) => {
         resolvePromise = resolve;
       });
-      mockShortenUrl.mockReturnValue(pendingPromise as Promise<ReturnType<typeof api.shortenUrl>>);
+      mockShortenUrl.mockReturnValue(pendingPromise);
 
       const { result } = renderHook(() => useShorten());
 
@@ -152,11 +153,11 @@ describe('useShorten', () => {
 
       expect(result.current.result).not.toBeNull();
 
-      let resolvePromise: (value: unknown) => void;
-      const pendingPromise = new Promise((resolve) => {
+      let resolvePromise: (value: ApiResponse<ShortenResponse>) => void;
+      const pendingPromise = new Promise<ApiResponse<ShortenResponse>>((resolve) => {
         resolvePromise = resolve;
       });
-      mockShortenUrl.mockReturnValue(pendingPromise as Promise<ReturnType<typeof api.shortenUrl>>);
+      mockShortenUrl.mockReturnValue(pendingPromise);
 
       act(() => {
         result.current.shorten({ url: 'https://another.com' });

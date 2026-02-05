@@ -82,15 +82,17 @@ describe('cn (className utility)', () => {
 
   describe('real-world usage patterns', () => {
     it('should handle button variant pattern', () => {
-      const variant = 'primary';
-      const size = 'lg';
-      const result = cn(
-        'inline-flex items-center justify-center',
-        variant === 'primary' && 'bg-primary text-primary-foreground',
-        variant === 'secondary' && 'bg-secondary text-secondary-foreground',
-        size === 'sm' && 'h-8 px-3',
-        size === 'lg' && 'h-10 px-8'
-      );
+      // Use function parameter to avoid TypeScript literal narrowing
+      const getClasses = (variant: 'primary' | 'secondary', size: 'sm' | 'lg') => {
+        return cn(
+          'inline-flex items-center justify-center',
+          variant === 'primary' && 'bg-primary text-primary-foreground',
+          variant === 'secondary' && 'bg-secondary text-secondary-foreground',
+          size === 'sm' && 'h-8 px-3',
+          size === 'lg' && 'h-10 px-8'
+        );
+      };
+      const result = getClasses('primary', 'lg');
       expect(result).toBe('inline-flex items-center justify-center bg-primary text-primary-foreground h-10 px-8');
     });
 
