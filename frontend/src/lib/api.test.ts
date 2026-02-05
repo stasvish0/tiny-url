@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { shortenUrl, checkHealth } from './api';
 
 const mockFetch = vi.fn();
-globalThis.fetch = mockFetch as any;
+globalThis.fetch = mockFetch as typeof fetch;
 
 describe('api', () => {
   beforeEach(() => {
