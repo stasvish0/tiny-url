@@ -1,2 +1,360 @@
-<testsuites id="" name="" tests="0" failures="0" skipped="0" errors="0" time="0.320019">
+<testsuites id="" name="" tests="21" failures="10" skipped="0" errors="0" time="24.887128">
+<testsuite name="health.api.spec.ts" timestamp="2026-02-14T22:03:03.641Z" hostname="api" tests="1" failures="0" skipped="0" time="2.126" errors="0">
+<testcase name="Health API › should return ok status" classname="health.api.spec.ts" time="2.126">
+</testcase>
+</testsuite>
+<testsuite name="redirect.api.spec.ts" timestamp="2026-02-14T22:03:03.641Z" hostname="api" tests="2" failures="2" skipped="0" time="10.29" errors="0">
+<testcase name="URL Redirect API › should redirect to original URL" classname="redirect.api.spec.ts" time="9.932">
+<failure message="redirect.api.spec.ts:7:3 should redirect to original URL" type="FAILURE">
+<![CDATA[  [api] › redirect.api.spec.ts:7:3 › URL Redirect API › should redirect to original URL ────────────
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+       9 |
+      10 |     const shortenResponse = await apiClient.shorten({ url: originalUrl });
+    > 11 |     expect(shortenResponse.success).toBe(true);
+         |                                     ^
+      12 |
+      13 |     if (shortenResponse.success) {
+      14 |       const location = await apiClient.getRedirectLocation(shortenResponse.data.shortCode);
+        at /Users/stas.wishnevetsky/git_repo/personal_repos/tiny-url/tests/e2e/redirect.api.spec.ts:11:37
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../test-results/redirect.api-URL-Redirect--1dd6b-ld-redirect-to-original-URL-api/trace.zip
+    Usage:
+
+        npx playwright show-trace ../test-results/redirect.api-URL-Redirect--1dd6b-ld-redirect-to-original-URL-api/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|redirect.api-URL-Redirect--1dd6b-ld-redirect-to-original-URL-api/trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="URL Redirect API › should return 404 for non-existent short code" classname="redirect.api.spec.ts" time="0.358">
+<failure message="redirect.api.spec.ts:19:3 should return 404 for non-existent short code" type="FAILURE">
+<![CDATA[  [api] › redirect.api.spec.ts:19:3 › URL Redirect API › should return 404 for non-existent short code 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 404
+    Received: 403
+
+      23 |     });
+      24 |
+    > 25 |     expect(response.status()).toBe(404);
+         |                               ^
+      26 |   });
+      27 | });
+      28 |
+        at /Users/stas.wishnevetsky/git_repo/personal_repos/tiny-url/tests/e2e/redirect.api.spec.ts:25:31
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../test-results/redirect.api-URL-Redirect--2f65b-for-non-existent-short-code-api/trace.zip
+    Usage:
+
+        npx playwright show-trace ../test-results/redirect.api-URL-Redirect--2f65b-for-non-existent-short-code-api/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|redirect.api-URL-Redirect--2f65b-for-non-existent-short-code-api/trace.zip]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="shorten.api.spec.ts" timestamp="2026-02-14T22:03:03.641Z" hostname="api" tests="18" failures="8" skipped="0" time="82.053" errors="0">
+<testcase name="URL Shortening API - Integration Tests › Success Scenarios › should shorten a valid URL with generated code" classname="shorten.api.spec.ts" time="9.874">
+<failure message="shorten.api.spec.ts:8:5 should shorten a valid URL with generated code" type="FAILURE">
+<![CDATA[  [api] › shorten.api.spec.ts:8:5 › URL Shortening API - Integration Tests › Success Scenarios › should shorten a valid URL with generated code 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      12 |
+      13 |       // Validate response structure
+    > 14 |       expect(response.success).toBe(true);
+         |                                ^
+      15 |       if (response.success) {
+      16 |         expect(response.data.shortCode).toHaveLength(7);
+      17 |         expect(response.data.shortCode).toMatch(/^[A-Za-z0-9_-]+$/);
+        at /Users/stas.wishnevetsky/git_repo/personal_repos/tiny-url/tests/e2e/shorten.api.spec.ts:14:32
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../test-results/shorten.api-URL-Shortening-d08af-lid-URL-with-generated-code-api/trace.zip
+    Usage:
+
+        npx playwright show-trace ../test-results/shorten.api-URL-Shortening-d08af-lid-URL-with-generated-code-api/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|shorten.api-URL-Shortening-d08af-lid-URL-with-generated-code-api/trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="URL Shortening API - Integration Tests › Success Scenarios › should accept custom slug" classname="shorten.api.spec.ts" time="9.896">
+<failure message="shorten.api.spec.ts:32:5 should accept custom slug" type="FAILURE">
+<![CDATA[  [api] › shorten.api.spec.ts:32:5 › URL Shortening API - Integration Tests › Success Scenarios › should accept custom slug 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      39 |       });
+      40 |
+    > 41 |       expect(response.success).toBe(true);
+         |                                ^
+      42 |       if (response.success) {
+      43 |         expect(response.data.shortCode).toBe(customSlug);
+      44 |         expect(response.data.shortUrl).toContain(customSlug);
+        at /Users/stas.wishnevetsky/git_repo/personal_repos/tiny-url/tests/e2e/shorten.api.spec.ts:41:32
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../test-results/shorten.api-URL-Shortening-2ad26-s-should-accept-custom-slug-api/trace.zip
+    Usage:
+
+        npx playwright show-trace ../test-results/shorten.api-URL-Shortening-2ad26-s-should-accept-custom-slug-api/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|shorten.api-URL-Shortening-2ad26-s-should-accept-custom-slug-api/trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="URL Shortening API - Integration Tests › Success Scenarios › should handle very long URLs" classname="shorten.api.spec.ts" time="2.059">
+<failure message="shorten.api.spec.ts:55:5 should handle very long URLs" type="FAILURE">
+<![CDATA[  [api] › shorten.api.spec.ts:55:5 › URL Shortening API - Integration Tests › Success Scenarios › should handle very long URLs 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      58 |       const response = await apiClient.shorten({ url: longUrl });
+      59 |
+    > 60 |       expect(response.success).toBe(true);
+         |                                ^
+      61 |       if (response.success) {
+      62 |         expect(response.data.shortCode).toHaveLength(7);
+      63 |         expect(response.data.originalUrl).toBe(longUrl);
+        at /Users/stas.wishnevetsky/git_repo/personal_repos/tiny-url/tests/e2e/shorten.api.spec.ts:60:32
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../test-results/shorten.api-URL-Shortening-2b8d5-hould-handle-very-long-URLs-api/trace.zip
+    Usage:
+
+        npx playwright show-trace ../test-results/shorten.api-URL-Shortening-2b8d5-hould-handle-very-long-URLs-api/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|shorten.api-URL-Shortening-2b8d5-hould-handle-very-long-URLs-api/trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="URL Shortening API - Integration Tests › Success Scenarios › should handle URLs with special characters" classname="shorten.api.spec.ts" time="1.98">
+<failure message="shorten.api.spec.ts:67:5 should handle URLs with special characters" type="FAILURE">
+<![CDATA[  [api] › shorten.api.spec.ts:67:5 › URL Shortening API - Integration Tests › Success Scenarios › should handle URLs with special characters 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      70 |       const response = await apiClient.shorten({ url: urlWithParams });
+      71 |
+    > 72 |       expect(response.success).toBe(true);
+         |                                ^
+      73 |       if (response.success) {
+      74 |         expect(response.data.originalUrl).toBe(urlWithParams);
+      75 |       }
+        at /Users/stas.wishnevetsky/git_repo/personal_repos/tiny-url/tests/e2e/shorten.api.spec.ts:72:32
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../test-results/shorten.api-URL-Shortening-df7d0-RLs-with-special-characters-api/trace.zip
+    Usage:
+
+        npx playwright show-trace ../test-results/shorten.api-URL-Shortening-df7d0-RLs-with-special-characters-api/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|shorten.api-URL-Shortening-df7d0-RLs-with-special-characters-api/trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="URL Shortening API - Integration Tests › Validation - Invalid URLs › should reject invalid URL format" classname="shorten.api.spec.ts" time="3.211">
+</testcase>
+<testcase name="URL Shortening API - Integration Tests › Validation - Invalid URLs › should reject missing URL" classname="shorten.api.spec.ts" time="2.79">
+</testcase>
+<testcase name="URL Shortening API - Integration Tests › Validation - Invalid URLs › should reject non-string URL" classname="shorten.api.spec.ts" time="1.796">
+</testcase>
+<testcase name="URL Shortening API - Integration Tests › Validation - Invalid URLs › should reject malformed JSON" classname="shorten.api.spec.ts" time="6.821">
+</testcase>
+<testcase name="URL Shortening API - Integration Tests › Validation - Invalid URLs › should reject URL without protocol" classname="shorten.api.spec.ts" time="3.318">
+</testcase>
+<testcase name="URL Shortening API - Integration Tests › Validation - Invalid Custom Slugs › should reject reserved slug" classname="shorten.api.spec.ts" time="6.564">
+</testcase>
+<testcase name="URL Shortening API - Integration Tests › Validation - Invalid Custom Slugs › should reject slug that is too short (&lt; 3 chars)" classname="shorten.api.spec.ts" time="7.929">
+</testcase>
+<testcase name="URL Shortening API - Integration Tests › Validation - Invalid Custom Slugs › should reject slug with invalid characters" classname="shorten.api.spec.ts" time="8.01">
+</testcase>
+<testcase name="URL Shortening API - Integration Tests › Validation - Invalid Custom Slugs › should reject non-string customSlug" classname="shorten.api.spec.ts" time="1.675">
+</testcase>
+<testcase name="URL Shortening API - Integration Tests › Validation - Invalid Custom Slugs › should treat empty string customSlug as no slug (generate code)" classname="shorten.api.spec.ts" time="2.138">
+<failure message="shorten.api.spec.ts:222:5 should treat empty string customSlug as no slug (generate code)" type="FAILURE">
+<![CDATA[  [api] › shorten.api.spec.ts:222:5 › URL Shortening API - Integration Tests › Validation - Invalid Custom Slugs › should treat empty string customSlug as no slug (generate code) 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      229 |
+      230 |       // Empty string should be treated as "no custom slug" - generate code instead
+    > 231 |       expect(response.success).toBe(true);
+          |                                ^
+      232 |       if (response.success) {
+      233 |         expect(response.data.shortCode).toHaveLength(7);
+      234 |         expect(response.data.shortCode).not.toBe('');
+        at /Users/stas.wishnevetsky/git_repo/personal_repos/tiny-url/tests/e2e/shorten.api.spec.ts:231:32
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../test-results/shorten.api-URL-Shortening-e0997-g-as-no-slug-generate-code--api/trace.zip
+    Usage:
+
+        npx playwright show-trace ../test-results/shorten.api-URL-Shortening-e0997-g-as-no-slug-generate-code--api/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|shorten.api-URL-Shortening-e0997-g-as-no-slug-generate-code--api/trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="URL Shortening API - Integration Tests › Collision Handling - CRITICAL › should reject duplicate custom slug with 409 SLUG_TAKEN" classname="shorten.api.spec.ts" time="5.147">
+<failure message="shorten.api.spec.ts:240:5 should reject duplicate custom slug with 409 SLUG_TAKEN" type="FAILURE">
+<![CDATA[  [api] › shorten.api.spec.ts:240:5 › URL Shortening API - Integration Tests › Collision Handling - CRITICAL › should reject duplicate custom slug with 409 SLUG_TAKEN 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      248 |         customSlug,
+      249 |       });
+    > 250 |       expect(firstResponse.success).toBe(true);
+          |                                     ^
+      251 |
+      252 |       // Second request with same slug - should fail with 409
+      253 |       const secondResponse = await apiClient.shorten({
+        at /Users/stas.wishnevetsky/git_repo/personal_repos/tiny-url/tests/e2e/shorten.api.spec.ts:250:37
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../test-results/shorten.api-URL-Shortening-8e11b-om-slug-with-409-SLUG-TAKEN-api/trace.zip
+    Usage:
+
+        npx playwright show-trace ../test-results/shorten.api-URL-Shortening-8e11b-om-slug-with-409-SLUG-TAKEN-api/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|shorten.api-URL-Shortening-8e11b-om-slug-with-409-SLUG-TAKEN-api/trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="URL Shortening API - Integration Tests › Collision Handling - CRITICAL › should handle generated code collisions gracefully (rare)" classname="shorten.api.spec.ts" time="2.101">
+<failure message="shorten.api.spec.ts:271:5 should handle generated code collisions gracefully (rare)" type="FAILURE">
+<![CDATA[  [api] › shorten.api.spec.ts:271:5 › URL Shortening API - Integration Tests › Collision Handling - CRITICAL › should handle generated code collisions gracefully (rare) 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      278 |       const response = await apiClient.shorten({ url: originalUrl });
+      279 |
+    > 280 |       expect(response.success).toBe(true);
+          |                                ^
+      281 |       if (response.success) {
+      282 |         // Should succeed even if internal retry happened
+      283 |         expect(response.data.shortCode).toHaveLength(7);
+        at /Users/stas.wishnevetsky/git_repo/personal_repos/tiny-url/tests/e2e/shorten.api.spec.ts:280:32
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../test-results/shorten.api-URL-Shortening-f15a5-collisions-gracefully-rare--api/trace.zip
+    Usage:
+
+        npx playwright show-trace ../test-results/shorten.api-URL-Shortening-f15a5-collisions-gracefully-rare--api/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|shorten.api-URL-Shortening-f15a5-collisions-gracefully-rare--api/trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="URL Shortening API - Integration Tests › Response Format Validation › success response should match API contract" classname="shorten.api.spec.ts" time="5.068">
+<failure message="shorten.api.spec.ts:289:5 success response should match API contract" type="FAILURE">
+<![CDATA[  [api] › shorten.api.spec.ts:289:5 › URL Shortening API - Integration Tests › Response Format Validation › success response should match API contract 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      292 |       const response = await apiClient.shorten({ url: originalUrl });
+      293 |
+    > 294 |       expect(response.success).toBe(true);
+          |                                ^
+      295 |       if (response.success) {
+      296 |         // Validate complete response structure
+      297 |         expect(response.data).toBeDefined();
+        at /Users/stas.wishnevetsky/git_repo/personal_repos/tiny-url/tests/e2e/shorten.api.spec.ts:294:32
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../test-results/shorten.api-URL-Shortening-ff23e-e-should-match-API-contract-api/trace.zip
+    Usage:
+
+        npx playwright show-trace ../test-results/shorten.api-URL-Shortening-ff23e-e-should-match-API-contract-api/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|shorten.api-URL-Shortening-ff23e-e-should-match-API-contract-api/trace.zip]]
+]]>
+</system-out>
+</testcase>
+<testcase name="URL Shortening API - Integration Tests › Response Format Validation › error response should match API contract" classname="shorten.api.spec.ts" time="1.676">
+</testcase>
+</testsuite>
 </testsuites>
