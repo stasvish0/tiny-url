@@ -10,6 +10,7 @@ export interface ShortenResponse {
   data: {
     shortUrl: string;
     shortCode: string;
+    originalUrl: string;
   };
 }
 

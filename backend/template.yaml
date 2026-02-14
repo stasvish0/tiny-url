@@ -82,6 +82,36 @@ Resources:
         EntryPoints:
           - src/handlers/health.ts
 
+  ShortenFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: shorten.handler
+      CodeUri: .
+      Runtime: nodejs20.x
+      Events:
+        Shorten:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref HttpApi
+            Path: /api/shorten
+            Method: POST
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref UrlMappingsTable
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        Minify: true
+        Target: es2022
+        Sourcemap: true
+        Format: esm
+        OutExtension:
+          - .js=.mjs
+        External:
+          - '@aws-sdk/*'
+        EntryPoints:
+          - src/handlers/shorten.ts
+
 Outputs:
   ApiEndpoint:
     Description: API Gateway endpoint URL
